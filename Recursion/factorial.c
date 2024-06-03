@@ -10,7 +10,7 @@ int fact(int n) {
 int main() {
     int r;
 
-    r = fact(4);
+    r = fact(3);
 
     printf("%d\n", r);
     return 0;
