@@ -252,6 +252,28 @@ struct Array *unionArrays(struct Array arr1, struct Array arr2)
     return arr3;
 }
 
+struct Array *intersection(struct Array arr1, struct Array arr2)
+{
+    int i = 0, j = 0, k = 0;
+
+    struct Array *arr3;
+
+    arr3 = (struct Array *)malloc(sizeof(struct Array));
+
+    while(i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] == arr2.A[j])
+            arr3->A[k++] = arr1.A[i];
+        i++;
+        j++;
+    }
+
+    arr3->length = k;
+    arr3->size = arr1.size + arr2.size;
+    
+    return arr3;
+}
+
 int main()
 {
     struct Array arr = {{2, 4, 8, 15, 50}, 10, 5};
@@ -285,7 +307,9 @@ int main()
 
     // display(*mergeArrays(arr, arr2));
 
-    display(*unionArrays(arr, arr2));
+    // display(*unionArrays(arr, arr2));
+
+    display(*intersection(arr, arr2));
 
     // display(arr);
 
