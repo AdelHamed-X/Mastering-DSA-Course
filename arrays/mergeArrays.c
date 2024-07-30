@@ -220,9 +220,41 @@ struct Array *mergeArrays(struct Array arr1, struct Array arr2)
     return arr3;
 }
 
+struct Array *unionArrays(struct Array arr1, struct Array arr2)
+{
+    int i = 0, j = 0, k = 0;
+
+    struct Array *arr3;
+
+    arr3 = (struct Array *)malloc(sizeof(struct Array));
+
+    while(i < arr1.length && j < arr2.length)
+    {
+        if (arr1.A[i] < arr2.A[j])
+            arr3->A[k++] = arr1.A[i++];
+        else if (arr2.A[j] < arr1.A[i])
+            arr3->A[k++] = arr2.A[j++];
+        else
+        {
+            arr3->A[k++] = arr2.A[j++];
+            i++;
+        }
+    }
+
+    for (;i < arr1.length; i++)
+        arr3->A[k++] = arr1.A[i];
+    for (;j < arr2.length; j++)
+        arr3->A[k++] = arr2.A[j];
+
+    arr3->length = k;
+    arr3->size = arr1.size + arr2.size;
+    
+    return arr3;
+}
+
 int main()
 {
-    struct Array arr = {{2, 7, 8, 11, 50}, 10, 5};
+    struct Array arr = {{2, 4, 8, 15, 50}, 10, 5};
     struct Array arr2 = {{3, 4, 12, 15, 51}, 10, 5};
 
     // append(&arr, 2);
@@ -251,7 +283,9 @@ int main()
 
     // printf("%d\n", checkSorted(arr));
 
-    display(*mergeArrays(arr, arr2));
+    // display(*mergeArrays(arr, arr2));
+
+    display(*unionArrays(arr, arr2));
 
     // display(arr);
 
