@@ -296,11 +296,28 @@ int findMissingElement(struct Array *arr)
     return 0;
 }
 
+int findMissingElementHash(struct Array *arr)
+{
+    int low, high, i;
+
+    low = arr->A[0];
+    high = arr->A[arr->length - 1];
+
+    int h[high];
+
+    for (i = low; i < high; i++)
+        h[arr->A[i]] = 1;
+    for (i = low + 1; i < high; i++)
+        if (h[i] != 1) printf("%d\n", i);
+    
+    return 0;
+}
+
 int main()
 {
     struct Array arr;
 
-    arr.length = 7;
+    arr.length = 9;
     arr.A = (int *)malloc(sizeof(int) * arr.length);
 
     int values[] = {1, 2, 3, 5, 6, 7, 8, 9, 10};
@@ -309,6 +326,7 @@ int main()
     }
 
     findMissingElement(&arr);
+    findMissingElementHash(&arr);
 
     return 0;
 }
