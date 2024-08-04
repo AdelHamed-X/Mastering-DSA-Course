@@ -327,6 +327,22 @@ void findDuplicates(struct Array *arr)
     }
 }
 
+void findDuplicatesCount(struct Array *arr)
+{
+    int lastDuplicate = 0, i, j = 0;
+
+    for (i = 0; i < arr->length - 1; i++)
+    {
+        if (arr->A[i] == arr->A[i + 1])
+        {
+            j = i + 1;
+            while (arr->A[i] == arr->A[j]) j++;
+            printf("%d is appearing %d times!\n", arr->A[i], j - i);
+            i = j - 1;
+        }
+    }
+}
+
 int main()
 {
     struct Array arr;
@@ -339,7 +355,7 @@ int main()
         arr.A[i] = values[i];
     }
 
-    findDuplicates(&arr);
+    findDuplicatesCount(&arr);
 
     return 0;
 }
