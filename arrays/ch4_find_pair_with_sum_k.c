@@ -392,6 +392,26 @@ void findPairHash(struct Array *arr, int k)
     }
 }
 
+void findPairSorted(struct Array arr, int k)
+{
+    int i = 0, j = arr.length - 1, left, right;
+
+    while (i < j)
+    {
+        left = arr.A[i];
+        right = arr.A[j];
+        if (left + right == k)
+        {
+            printf("%d + %d = %d\n", left, right, k);
+            j--; i++;
+        }
+        else if (left + right < k)
+            i++;
+        else
+            j--;
+    }
+}
+
 int main()
 {
     struct Array arr;
@@ -404,7 +424,7 @@ int main()
         arr.A[i] = values[i];
     }
 
-    findPairHash(&arr, 5);
+    findPairSorted(arr, 5);
 
     return 0;
 }
