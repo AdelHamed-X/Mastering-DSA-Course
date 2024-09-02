@@ -350,7 +350,7 @@ int main()
     arr.length = 9;
     arr.A = (int *)malloc(sizeof(int) * arr.length);
 
-    int values[] = {1, 2, 2, 5, 6, 6, 6, 9, 10};
+    int values[] = {1, 2, 2, 5, 6, 6, 6, 9, 6};
     for (int i = 0; i < arr.length; i++) {
         arr.A[i] = values[i];
     }
